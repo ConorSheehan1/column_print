@@ -1,3 +1,5 @@
+import sys
+
 def column_print(strings, page_width=32, tab_width=4):
     ncols = len(strings)
     #add space for tabs
@@ -5,7 +7,7 @@ def column_print(strings, page_width=32, tab_width=4):
     width = page_width // ncols
 
     # while there is data left to print
-    while not all(s == "" for s in strings):
+    while not all(string == "" for string in strings):
         for i, s in enumerate(strings):
             # go to a new line for each column
             if i == 0: print()
@@ -29,4 +31,11 @@ if __name__ == "__main__":
     for i in range(n):
         l.append(input("string {}". format(i)))
     print(l)
-    column_print(l)
+
+
+    if len(sys.argv) == 2:
+        column_print(l, page_width=int(sys.argv[1]))
+    elif len(sys.argv) == 3:
+        column_print(l, page_width=int(sys.argv[1]), tab_width=int(sys.argv[2]))
+    else:
+        column_print(l)
